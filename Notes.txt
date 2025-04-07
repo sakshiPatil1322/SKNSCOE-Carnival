@@ -1,0 +1,192 @@
+// Admin approval controller
+export const approveOrRejectController = async (req, res) => {
+  const { userId, action } = req.body; // action can be 'approve' or 'reject'
+
+  try {
+    // Only admins can approve or reject
+    const admin = await userModel.findById(req.user._id); // Assuming we use JWT for admin authentication
+    if (admin.role !== "admin") {
+      return res.send({ success: false, message: "Unauthorized" });
+    }
+
+    // Find the user to approve or reject
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res.send({ success: false, message: "User not found" });
+    }
+
+    // Only guide or admin users can be approved/rejected
+    if (user.role !== "guide" && user.role !== "admin") {
+      return res.send({ success: false, message: "This user is not a guide or admin" });
+    }
+
+    if (action === "approve") {
+      user.status = "approved";
+    } else if (action === "reject") {
+      user.status = "rejected";
+    }
+
+    await user.save();
+    res.status(200).send({ success: true, message: `User ${action}d successfully` });
+  } catch (err) {
+    console.log(`Error in approveOrRejectController: ${err}`);
+    res.status(500).send({ message: "Server error" });
+  }
+};
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////TABLE REPRESENTATION OF REGISTRATION////////////////////////////////////////////
+
+
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import Layout from "../../components/Layout/Layout";
+
+const EventRegistrations = () => {
+  const { eventId } = useParams();
+  const [registrations, setRegistrations] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchRegistrations = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/api/v1/guide/event-registrations/${eventId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setRegistrations(res.data.registrations || []);
+    } catch (error) {
+      console.error("Error fetching registrations:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchRegistrations();
+  }, [eventId]);
+
+  const soloRegistrations = registrations.filter((reg) => reg.type === "solo");
+  const groupRegistrations = registrations.filter((reg) => reg.type === "group");
+
+  return (
+    <Layout>
+      <div className="p-4 md:p-6">
+        <h2 className="text-2xl font-bold mb-4 text-center">
+          Event Registrations
+        </h2>
+
+        {loading ? (
+          <p className="text-center">Loading registrations...</p>
+        ) : registrations.length === 0 ? (
+          <p className="text-center">No registrations yet for this event.</p>
+        ) : (
+          <div className="flex flex-col gap-12 mt-6">
+            {/* Group Events Table */}
+            {groupRegistrations.length > 0 && (
+              <div className="overflow-x-auto flex justify-center">
+                <table className="min-w-[900px] w-full max-w-6xl border text-center">
+                  <thead className="bg-gray-100">
+                    <tr>
+                      <th className="border p-2">Team Name</th>
+                      <th className="border p-2">Name</th>
+                      <th className="border p-2">Roll Number</th>
+                      <th className="border p-2">Mobile</th>
+                      <th className="border p-2">Email</th>
+                      <th className="border p-2">Branch</th>
+                      <th className="border p-2">Year</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {groupRegistrations.map((reg, groupIndex) =>
+                      reg.participants.map((p, i) => (
+                        <tr
+                          key={`${groupIndex}-${i}`}
+                          className={`hover:bg-gray-50 ${
+                            i === reg.participants.length - 1
+                              ? "border-b-4 border-black"
+                              : ""
+                          }`}
+                        >
+                          {i === 0 ? (
+                            <td
+                              className="border p-2 font-medium align-middle"
+                              rowSpan={reg.participants.length}
+                            >
+                              {reg.teamName}
+                            </td>
+                          ) : null}
+                          <td className="border p-2">{p.name}</td>
+                          <td className="border p-2">{p.rollNumber}</td>
+                          <td className="border p-2">{p.mobileNumber}</td>
+                          <td className="border p-2">{p.email}</td>
+                          <td className="border p-2">{p.branch}</td>
+                          <td className="border p-2">{p.year}</td>
+                        </tr>
+                      ))
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {/* Solo Events Table */}
+            {soloRegistrations.length > 0 && (
+              <div className="overflow-x-auto flex justify-center">
+                <table className="min-w-[800px] w-full max-w-5xl border text-center">
+                  <thead className="bg-gray-100">
+                    <tr>
+                      <th className="border p-2">Name</th>
+                      <th className="border p-2">Roll Number</th>
+                      <th className="border p-2">Mobile</th>
+                      <th className="border p-2">Email</th>
+                      <th className="border p-2">Branch</th>
+                      <th className="border p-2">Year</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {soloRegistrations.map((reg, index) => (
+                      <tr key={index} className="hover:bg-gray-50">
+                        <td className="border p-2">
+                          {reg.formData["Participant Name"]}
+                        </td>
+                        <td className="border p-2">
+                          {reg.formData["rollNumber"]}
+                        </td>
+                        <td className="border p-2">
+                          {reg.formData["mobileNumber"]}
+                        </td>
+                        <td className="border p-2">{reg.formData["email"]}</td>
+                        <td className="border p-2">
+                          {reg.formData["Department"]}
+                        </td>
+                        <td className="border p-2">
+                          {reg.formData["Current Year"]}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </Layout>
+  );
+};
+
+export default EventRegistrations;
