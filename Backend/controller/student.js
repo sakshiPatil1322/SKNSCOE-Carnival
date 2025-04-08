@@ -17,7 +17,16 @@ export const ongoingEvents = async (req, res) => {
   }
 }
 
+export const allEvents = async (req, res) => {
+  try {
+    const events = await Event.find({
+    }).populate('guide', 'name');
 
+    res.status(200).json(events);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching events", error });
+  }
+}
 
 export const registerEvent = async (req, res) => {
   try {
