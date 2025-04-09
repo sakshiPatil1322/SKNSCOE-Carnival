@@ -66,7 +66,7 @@ const EventRegistrations = () => {
                 ) : registrations.length === 0 ? (
                     <p className="text-center">No registrations yet for this event.</p>
                 ) : (
-                    <div className="flex flex-col gap-12 mt-6">
+                    <div className="flex flex-col gap-12 mt-5">
                         <h3 className="text-lg font-semibold mt-5 text-center">
                             Registration List
                         </h3>
