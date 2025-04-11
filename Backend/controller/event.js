@@ -1,6 +1,7 @@
 import Event from "../model/event.js"
 import nodemailer from "nodemailer";
 import User from "../model/user.js"
+import Registration from "../model/registration.js"; 
 
 export const createEventController = async (req, res) => {
     const { name, type, category, guide, startDate, endDate, registrationFields, groupLimit } = req.body;
@@ -97,8 +98,14 @@ export const getAllEventsController = async (req, res) => {
 export const deleteEventController = async (req, res) => {
     try {
         const { id } = req.params;
+
+        // Delete registrations for this event
+        await Registration.deleteMany({ event: id });
+
+        // Delete the event itself
         await Event.findByIdAndDelete(id);
-        res.status(200).json({ message: "Event deleted successfully" });
+
+        res.status(200).json({ message: "Event and related registrations deleted successfully" });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Error deleting event", error: error.message });

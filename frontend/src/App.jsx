@@ -14,6 +14,7 @@ import EventRegistrations from './pages/Guide/EventRegistrations';
 import UpdateProfile from './pages/UpdateProfile';
 import UploadNotice from './pages/UploadNotice';
 import NoticeList from './pages/Student/NoticeList';
+import Gallery from './pages/Admin/Gallery';
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
         <Route path="/event-registrations/:eventId" element={<EventRegistrations />} />
         <Route path="/upload-notice" element={<UploadNotice />} />
         <Route path="/notice" element={<NoticeList />} />
+        <Route path="/gallery" element={<Gallery />} />
       </Routes>
     </>
   )

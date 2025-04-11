@@ -72,10 +72,13 @@ const Header = ({ user }) => {
             <NavLink to="/approve-guides" className="nav-link">Approve-Guides</NavLink>
           </li>
           <li className="nav-item">
-            <NavLink to="/profile" className="nav-link">Update-Profile</NavLink>
+            <NavLink to="/upload-notice" className="nav-link">Upload-Notice</NavLink>
           </li>
           <li className="nav-item">
-            <NavLink to="/upload-notice" className="nav-link">Upload-Notice</NavLink>
+            <NavLink to="/gallery" className="nav-link">Gallery</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink to="/profile" className="nav-link">Update-Profile</NavLink>
           </li>
           <li className="nav-item">
             <NavLink to="/logout" className="nav-link">Logout</NavLink>
