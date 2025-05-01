@@ -29,6 +29,14 @@ const Homepage = () => {
       buttonText: "Explore Events",
       buttonLink: "#events",
     },
+    {
+      url: "/images/clg3.JPG",
+      heading: "Skn Sinhgad College of Engineering Korti , Pandharpur",
+      description:
+        'Accredited by NBA (UG Programmes - Civil , E&TC , Mech) & NAAC with "A+" Grade',
+      buttonText: "Explore Events",
+      buttonLink: "#events",
+    },
   ];
 
   useEffect(() => {

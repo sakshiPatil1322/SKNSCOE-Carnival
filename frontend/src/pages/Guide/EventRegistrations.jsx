@@ -91,6 +91,7 @@ const EventRegistrations = () => {
                                                         <th className="border p-2">Mobile</th>
                                                         <th className="border p-2">Email</th>
                                                         <th className="border p-2">Branch</th>
+                                                        <th className="border p-2">Division</th>
                                                         <th className="border p-2">Year</th>
                                                     </tr>
                                                 </thead>
@@ -102,6 +103,7 @@ const EventRegistrations = () => {
                                                             <td className="border p-2">{p.mobileNumber}</td>
                                                             <td className="border p-2">{p.email}</td>
                                                             <td className="border p-2">{p.branch}</td>
+                                                            <td className="border p-2">{p.division}</td>
                                                             <td className="border p-2">{p.year}</td>
                                                         </tr>
                                                     ))}
@@ -124,6 +126,7 @@ const EventRegistrations = () => {
                                             <th className="border p-2">Mobile</th>
                                             <th className="border p-2">Email</th>
                                             <th className="border p-2">Branch</th>
+                                            <th className="border p-2">Division</th>
                                             <th className="border p-2">Year</th>
                                             {eventName === "cricket" && (
                                                 <th className="border p-2">Specialization</th>
@@ -145,6 +148,9 @@ const EventRegistrations = () => {
                                                 <td className="border p-2">{reg.formData["email"]}</td>
                                                 <td className="border p-2">
                                                     {reg.formData["Department"]}
+                                                </td>
+                                                <td className="border p-2">
+                                                    {reg.formData["division"]}
                                                 </td>
                                                 <td className="border p-2">
                                                     {reg.formData["Current Year"]}

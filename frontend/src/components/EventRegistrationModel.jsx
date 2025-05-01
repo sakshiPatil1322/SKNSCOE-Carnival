@@ -7,7 +7,7 @@ const EventRegistrationModal = ({ event, onClose }) => {
     const [total, setTotal] = useState(1);
     const [teamName, setTeamName] = useState("");
     const [participants, setParticipants] = useState([
-        { name: "", rollNumber: "", mobileNumber: "", year: "", branch: "", email: "" }
+        { name: "", rollNumber: "", mobileNumber: "", year: "", branch: "", email: "" ,division: ""}
     ]);
 
     const mainParticipantLabel = event?.category === "sports" ? "Name of the Captain" : "Name of Leader";
@@ -25,7 +25,7 @@ const EventRegistrationModal = ({ event, onClose }) => {
     const addParticipant = () => {
         if (event?.groupLimit === 0 || participants.length < event?.groupLimit) {
             setTotal(total + 1);
-            setParticipants([...participants, { name: "", rollNumber: "", mobileNumber: "", year: "", branch: "", email: "" }]);
+            setParticipants([...participants, { name: "", rollNumber: "", mobileNumber: "", year: "", branch: "", email: "" ,division: "" }]);
         } else {
             toast.error(`Maximum ${event?.groupLimit} participants allowed.`);
         }
@@ -97,12 +97,25 @@ const EventRegistrationModal = ({ event, onClose }) => {
                                             ))}
                                         </select>
                                     ) : (
+
                                         <input
                                             type={field.type}
                                             className="border p-2 w-full rounded"
-                                            onChange={(e) => handleChange(e, field.label)}
+                                            value={formData[field.label] || ""} // Ensure controlled input
+                                            onChange={(e) => {
+                                                const value = e.target.value;
+                                                // If field expects only alphabets and spaces
+                                                if (field.label.toLowerCase().includes("name")) {
+                                                    if (/^[a-zA-Z\s]*$/.test(value)) {
+                                                        handleChange(e, field.label);
+                                                    }
+                                                } else {
+                                                    handleChange(e, field.label); // For all other field types
+                                                }
+                                            }}
                                             required={field.required}
                                         />
+
                                     )}
                                 </div>
                             ))}
@@ -124,11 +137,32 @@ const EventRegistrationModal = ({ event, onClose }) => {
                                     </select>
                                 </div>
                             )}
+                            <div>
+                                <label className="block text-sm font-semibold">Division</label>
+                                <select
+                                    className="border p-2 w-full rounded"
+                                    onChange={(e) => handleChange(e, "division")}
+                                    required
+                                >
+                                    <option value="">Select Division</option>
+                                    <option value="NA">NA</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="F">F</option>
+                                    <option value="G">G</option>
+                                    <option value="H">H</option>
+                                    <option value="I">I</option>
+                                    <option value="J">J</option>
+                                </select>
+                            </div>
 
                             <div>
                                 <label className="block text-sm font-semibold">Roll Number</label>
                                 <input
-                                    type="text"
+                                    type="number"
                                     className="border p-2 w-full rounded"
                                     onChange={(e) => handleChange(e, "rollNumber")}
                                     required
@@ -138,7 +172,7 @@ const EventRegistrationModal = ({ event, onClose }) => {
                             <div>
                                 <label className="block text-sm font-semibold">Mobile Number</label>
                                 <input
-                                    type="text"
+                                    type="number"
                                     className="border p-2 w-full rounded"
                                     onChange={(e) => handleChange(e, "mobileNumber")}
                                     required
@@ -183,14 +217,19 @@ const EventRegistrationModal = ({ event, onClose }) => {
                                             placeholder="Name"
                                             className="border p-2 w-full mb-1 rounded"
                                             value={participant.name}
-                                            onChange={(e) => handleParticipantChange(index, "name", e.target.value)}
+                                            onChange={(e) => {
+                                                const newValue = e.target.value;
+                                                if (/^[a-zA-Z\s]*$/.test(newValue)) {
+                                                    handleParticipantChange(index, "name", newValue);
+                                                }
+                                            }}
                                             required
                                         />
 
                                         {/* Roll Number Field */}
                                         <label className="block text-sm font-semibold mt-2">Roll Number</label>
                                         <input
-                                            type="text"
+                                            type="number"
                                             placeholder="Roll Number"
                                             className="border p-2 w-full mb-1 rounded"
                                             value={participant.rollNumber}
@@ -201,7 +240,7 @@ const EventRegistrationModal = ({ event, onClose }) => {
                                         {/* Mobile Number Field */}
                                         <label className="block text-sm font-semibold mt-2">Mobile Number</label>
                                         <input
-                                            type="text"
+                                            type="number"
                                             placeholder="Mobile Number"
                                             className="border p-2 w-full mb-1 rounded"
                                             value={participant.mobileNumber}
@@ -250,6 +289,29 @@ const EventRegistrationModal = ({ event, onClose }) => {
                                             <option value="MECHANICAL">MECHANICAL</option>
                                             <option value="CIVIL">CIVIL</option>
                                         </select>
+
+                                        <div>
+                                            <label className="block text-sm font-semibold mt-2">Division</label>
+                                            <select
+                                                className="border p-2 w-full rounded"
+                                                value={participant.division}
+                                                onChange={(e) => handleParticipantChange(index, "division",e.target.value)}
+                                                required
+                                            >
+                                                <option value="">Select Division</option>
+                                                <option value="NA">NA</option>
+                                                <option value="A">A</option>
+                                                <option value="B">B</option>
+                                                <option value="C">C</option>
+                                                <option value="D">D</option>
+                                                <option value="E">E</option>
+                                                <option value="F">F</option>
+                                                <option value="G">G</option>
+                                                <option value="H">H</option>
+                                                <option value="I">I</option>
+                                                <option value="J">J</option>
+                                            </select>
+                                        </div>
 
                                         {/* Remove Button */}
                                         {index !== 0 && (

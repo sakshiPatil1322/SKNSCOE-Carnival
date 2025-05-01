@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const CreateEventForm = () => {
     const navigate = useNavigate();
+    const [nameWarning, setNameWarning] = useState('');
     const [formData, setFormData] = useState({
         name: '',
         type: 'solo',
@@ -58,8 +59,19 @@ const CreateEventForm = () => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
+
+        if (name === "name") {
+            const nameRegex = /^[A-Za-z\s]+$/;
+            if (!nameRegex.test(value) && value !== "") {
+                setNameWarning("Only alphabets and spaces are allowed in event name.");
+            } else {
+                setNameWarning("");
+            }
+        }
+
         setFormData({ ...formData, [name]: value });
     };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -77,7 +89,18 @@ const CreateEventForm = () => {
             <div className='m-up flex flex-col items-center '>
                 <form className="event-form mt-5" onSubmit={handleSubmit}>
                     <h2 className=''>Create Event</h2>
-                    <input type="text" name="name" placeholder="Event Name" value={formData.name} onChange={handleInputChange} required />
+
+                    <div className="input-group">
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Event Name"
+                            value={formData.name}
+                            onChange={handleInputChange}
+                            required
+                        />
+                        {nameWarning && <p className="text-red-500 text-sm">{nameWarning}</p>}
+                    </div>
 
                     <select name="type" value={formData.type} onChange={handleInputChange}>
                         <option value="solo">Solo</option>
@@ -119,7 +142,14 @@ const CreateEventForm = () => {
                         </div>
                     )}
 
-                    <button type="submit">Create Event</button>
+                    <button
+                        type="submit"
+                        disabled={nameWarning !== ''}
+                        className={`mt-4 px-4 py-2 rounded text-white font-semibold 
+                        ${nameWarning !== '' ? 'bg-gray-400 cursor-not-allowed opacity-50' : 'bg-blue-500 hover:bg-blue-600'}`}>
+                        Create Event
+                    </button>
+
                 </form>
             </div>
         </Layout>

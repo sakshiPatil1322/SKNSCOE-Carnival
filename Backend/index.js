@@ -8,6 +8,8 @@ import eventRoute from './routes/event.js'
 import studentRoutes from './routes/student.js'
 import guideRoutes from './routes/guide.js'
 import noticeRoutes from './routes/notice.js'
+import contactRoutes from './routes/contact.js'
+
 
 dotenv.config();
 
@@ -32,6 +34,7 @@ app.use('/api/v1/events',eventRoute);
 app.use('/api/v1/student',studentRoutes);
 app.use('/api/v1/guide',guideRoutes);
 app.use('/api/v1/notice',noticeRoutes);
+app.use('/api/v1/contact', contactRoutes);
 
 // app.use('/user',userRoutr);
 

@@ -15,7 +15,7 @@ import UpdateProfile from './pages/UpdateProfile';
 import UploadNotice from './pages/UploadNotice';
 import NoticeList from './pages/Student/NoticeList';
 import Gallery from './pages/Admin/Gallery';
-
+import Contact from './pages/Contact'
 const App = () => {
   return (
     <>
@@ -35,6 +35,7 @@ const App = () => {
         <Route path="/upload-notice" element={<UploadNotice />} />
         <Route path="/notice" element={<NoticeList />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </>
   )

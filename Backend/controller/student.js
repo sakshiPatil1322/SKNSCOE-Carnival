@@ -53,7 +53,7 @@ export const registerEvent = async (req, res) => {
 
     // Validate participants (ensure rollNumber & mobileNumber are included)
     const validParticipants = participants.filter(
-      (p) => p.name?.trim() && p.year?.trim() && p.branch?.trim() && p.rollNumber?.trim() && p.mobileNumber?.trim()
+      (p) => p.name?.trim() && p.year?.trim() && p.branch?.trim() && p.division?.trim() && p.rollNumber?.trim() && p.mobileNumber?.trim()
     );
 
     if (type === "group" && validParticipants.length === 0) {

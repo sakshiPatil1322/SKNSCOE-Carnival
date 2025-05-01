@@ -24,13 +24,22 @@ const handleDownloadExcel = async (eventId, eventName) => {
       return;
     }
 
+    let includeSpecialization = false;
+
     const formattedData = registrations.flatMap((reg) => {
       if (reg.type === "solo") {
-        return {
+        const hasSpecialization = reg.formData.specialization?.trim();
+        if (hasSpecialization) includeSpecialization = true;
+
+        const data = {
           ...reg.formData,
-          specialization: reg.formData.specialization || "",
           registrationDate: new Date(reg.registeredAt).toLocaleString(),
         };
+
+        // Remove specialization field if empty
+        if (!hasSpecialization) delete data.specialization;
+
+        return data;
       } else if (reg.type === "group") {
         return reg.participants.map((p) => ({
           TeamName: reg.teamName || "",
@@ -38,12 +47,18 @@ const handleDownloadExcel = async (eventId, eventName) => {
           RollNumber: p.rollNumber,
           Branch: p.branch,
           Year: p.year,
+          Division: p.division,
           Email: p.email,
           Mobile: p.mobileNumber,
           registrationDate: new Date(reg.registeredAt).toLocaleString(),
         }));
       }
     });
+
+    // Remove specialization column if not needed
+    if (!includeSpecialization) {
+      formattedData.forEach((entry) => delete entry.specialization);
+    }
 
     const worksheet = XLSX.utils.json_to_sheet(formattedData);
     const workbook = XLSX.utils.book_new();

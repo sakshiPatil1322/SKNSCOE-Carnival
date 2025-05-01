@@ -9,10 +9,11 @@ const registrationSchema = new mongoose.Schema({
     {
       userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
       name: { type: String, required: true },
-      rollNumber: { type: String, required: true }, // Added roll number
-      mobileNumber: { type: String, required: true }, // Added mobile number
+      rollNumber: { type: Number, required: true }, // Added roll number
+      mobileNumber: { type: Number, required: true }, // Added mobile number
       year: { type: String, required: true },
       branch: { type: String, required: true },
+      division: { type: String, required: true },
       email: { type: String, required: true },
     },
   ],

@@ -9,17 +9,17 @@ const Footer = () => {
       }}
     >
       <p className="text-sm md:text-base text-gray-700 text-center mb-1">
-        &copy; 2025 <span className="font-semibold text-gray-800">Event Registration</span>. All Rights Reserved.
+        &copy; <span className="font-semibold text-[#1E3A8A]">Bluverse </span>. All Rights Reserved.
       </p>
 
       <div className="text-sm flex gap-2">
-        <Link
-          to="/about"
+        <a
+          href="https://www.sknscoe.ac.in/"
           className="text-[#4285F4] hover:text-[#0b66c3] no-underline transition-colors duration-200 font-medium"
           style={{ textDecoration: 'none' }}
         >
           About
-        </Link>
+        </a>
         |
         <Link
           to="/contact"
