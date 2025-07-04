@@ -24,7 +24,7 @@ const CreateEventForm = () => {
             {
                 label: 'Department',
                 type: 'dropdown',
-                options: ['CSE', 'ENTC', 'ELECTRICAL', 'MECHANICAL', 'CIVIL'],
+                options: ['CSE', 'AIDS', 'ENTC', 'ELECTRICAL', 'MECHANICAL', 'CIVIL'],
                 required: true,
             },
             {

@@ -7,7 +7,7 @@ const EventRegistrationModal = ({ event, onClose }) => {
     const [total, setTotal] = useState(1);
     const [teamName, setTeamName] = useState("");
     const [participants, setParticipants] = useState([
-        { name: "", rollNumber: "", mobileNumber: "", year: "", branch: "", email: "" ,division: ""}
+        { name: "", rollNumber: "", mobileNumber: "", year: "", branch: "", email: "", division: "" }
     ]);
 
     const mainParticipantLabel = event?.category === "sports" ? "Name of the Captain" : "Name of Leader";
@@ -25,7 +25,7 @@ const EventRegistrationModal = ({ event, onClose }) => {
     const addParticipant = () => {
         if (event?.groupLimit === 0 || participants.length < event?.groupLimit) {
             setTotal(total + 1);
-            setParticipants([...participants, { name: "", rollNumber: "", mobileNumber: "", year: "", branch: "", email: "" ,division: "" }]);
+            setParticipants([...participants, { name: "", rollNumber: "", mobileNumber: "", year: "", branch: "", email: "", division: "" }]);
         } else {
             toast.error(`Maximum ${event?.groupLimit} participants allowed.`);
         }
@@ -121,8 +121,7 @@ const EventRegistrationModal = ({ event, onClose }) => {
                             ))}
 
                             {/* Additional fields for Solo Events */}
-
-                            {event?.name?.toLowerCase() === "cricket" && (
+                            {["cricket", "khokho", "kabaddi"].includes(event?.name?.toLowerCase().replace(/\s/g, "")) && (
                                 <div>
                                     <label className="block text-sm font-semibold">Specialization</label>
                                     <select
@@ -131,9 +130,26 @@ const EventRegistrationModal = ({ event, onClose }) => {
                                         required
                                     >
                                         <option value="">Select Specialization</option>
-                                        <option value="Batsman">Batsman</option>
-                                        <option value="Bowler">Bowler</option>
-                                        <option value="All-Rounder">All-Rounder</option>
+                                        {event?.name?.toLowerCase().replace(/\s/g, "") === "cricket" && (
+                                            <>
+                                                <option value="Batsman">Batsman</option>
+                                                <option value="Bowler">Bowler</option>
+                                                <option value="All-Rounder">All-Rounder</option>
+                                            </>
+                                        )}
+                                        {event?.name?.toLowerCase().replace(/\s/g, "") === "khokho" && (
+                                            <>
+                                                <option value="Chaser">Chaser</option>
+                                                <option value="Defender">Defender</option>
+                                            </>
+                                        )}
+                                        {event?.name?.toLowerCase().replace(/\s/g, "") === "kabaddi" && (
+                                            <>
+                                                <option value="Raider">Raider</option>
+                                                <option value="Defender">Defender</option>
+                                                <option value="All-Rounder">All-Rounder</option>
+                                            </>
+                                        )}
                                     </select>
                                 </div>
                             )}
@@ -284,6 +300,7 @@ const EventRegistrationModal = ({ event, onClose }) => {
                                         >
                                             <option value="">Select Branch</option>
                                             <option value="CSE">CSE</option>
+                                            <option value="AIDS">AIDS</option>
                                             <option value="ENTC">ENTC</option>
                                             <option value="ELECTRICAL">ELECTRICAL</option>
                                             <option value="MECHANICAL">MECHANICAL</option>
@@ -295,7 +312,7 @@ const EventRegistrationModal = ({ event, onClose }) => {
                                             <select
                                                 className="border p-2 w-full rounded"
                                                 value={participant.division}
-                                                onChange={(e) => handleParticipantChange(index, "division",e.target.value)}
+                                                onChange={(e) => handleParticipantChange(index, "division", e.target.value)}
                                                 required
                                             >
                                                 <option value="">Select Division</option>

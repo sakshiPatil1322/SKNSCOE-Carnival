@@ -33,7 +33,7 @@ const sendQuery = async (req, res) => {
         };
 
         await transporter.sendMail(mailOptions);
-        res.status(200).json({ success: 'Your Message received successfully!' });
+        res.status(200).json({ success: 'Your Message received` successfully!' });
     } catch (error) {
         console.error('Error sending mail:', error);
         res.status(500).json({ error: 'Failed to send message' });
