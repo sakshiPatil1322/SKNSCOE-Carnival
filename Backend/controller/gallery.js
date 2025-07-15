@@ -11,7 +11,7 @@ export const uploadGalleryImageController = async (req, res) => {
         }
 
         const newImage = new Gallery({
-            imageUrl: file.path, // ✅ CORRECT field name
+            imageUrl: file.path, 
             cloudinaryId: file.filename || file.originalname, // optional, used for deletion
         });
 

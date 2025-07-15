@@ -11,6 +11,19 @@ const StudentEvents = () => {
     fetchEvents();
   }, []);
 
+  useEffect(() => {
+    if (selectedEvent) {
+      document.body.style.overflow = "hidden"; // lock scroll
+    } else {
+      document.body.style.overflow = "auto"; // unlock scroll
+    }
+
+    return () => {
+      document.body.style.overflow = "auto"; // cleanup
+    };
+  }, [selectedEvent]);
+
+
   const fetchEvents = async () => {
     try {
       const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/v1/student/ongoing`);

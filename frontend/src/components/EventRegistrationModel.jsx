@@ -75,9 +75,9 @@ const EventRegistrationModal = ({ event, onClose }) => {
 
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-200 bg-opacity-40 backdrop-blur-sm p-4 mt-4">
             <div className="bg-white p-6 rounded-lg w-full max-w-lg shadow-lg relative max-h-[90vh] overflow-y-auto mt-5">
-                <h2 className="text-xl font-bold text-center mt-3">Register for {event?.name}</h2>
+                <h2 className="text-xl font-bold text-center mb-0 mt-2">Register for {event?.name}</h2>
 
                 <form onSubmit={handleSubmit} className="p-4 mt-0 mb-5">
                     {event?.type === "solo" && (
