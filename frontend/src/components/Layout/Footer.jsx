@@ -3,11 +3,8 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="w-full h-[2cm] bg-white bg-opacity-60 border rounded-2xl shadow-md border-transparent bg-clip-padding backdrop-blur-md px-4 mt-5 flex flex-col justify-center items-center"
-      style={{
-        borderImage: 'linear-gradient(to right, #4285F4, #34A853, #FBBC05, #EA4335) 1',
-      }}
-    >
+    <footer className="hidden sm:flex w-full bg-white bg-opacity-60 border rounded-2xl shadow-md border-transparent bg-clip-padding backdrop-blur-md 
+    px-4 mt-5 flex-col justify-center items-center py-3">
       <p className="text-sm md:text-base text-gray-700 text-center mb-1">
         &copy; <span className="font-semibold text-[#1E3A8A]">Bluverse </span>. All Rights Reserved.
       </p>

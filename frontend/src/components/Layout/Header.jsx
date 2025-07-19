@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai"; // Icons for better UI
 import logo from "/images/clg-logo.jpg";
+import { Link } from 'react-router-dom';
 
 const Header = ({ user }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -69,7 +70,7 @@ const Header = ({ user }) => {
             <NavLink to="/manage-events" className="nav-link">Manage-Events</NavLink>
           </li>
           <li className="nav-item">
-            <NavLink to="/approve-guides" className="nav-link">Approve-Guides</NavLink>
+            <NavLink to="/approve-guides" className="nav-link">Approve-Event-Coordinator</NavLink>
           </li>
           <li className="nav-item">
             <NavLink to="/upload-notice" className="nav-link">Upload-Notice</NavLink>
@@ -112,6 +113,27 @@ const Header = ({ user }) => {
             <AiOutlineClose size={30} />
           </button>
           {renderNav()}
+          <div className="flex flex-col gap-2">
+            <a
+              href="https://www.sknscoe.ac.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="About SKNSCOE official website"
+              className="inline-block text-[#4285F4] hover:text-[#0b66c3] transition-colors duration-200 font-medium"
+              style={{ textDecoration: "none" }}
+            >
+              About
+            </a>
+            <Link
+              to="/contact"
+              aria-label="Contact Page"
+              className="inline-block text-[#EA4335] hover:text-[#c5221f] transition-colors duration-200 font-medium"
+              style={{ textDecoration: "none" }}
+            >
+              Contact
+            </Link>
+          </div>
+          
         </div>
 
         {/* Full nav on large screens */}

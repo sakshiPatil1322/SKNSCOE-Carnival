@@ -87,7 +87,7 @@ const Register = () => {
                 value={role}
                 onChange={handleRoleChange}
               >
-                <option value="guide">guide</option>
+                <option value="guide">Event Coordinator</option>
                 <option value="admin">Admin</option>
               </select>
             </div>

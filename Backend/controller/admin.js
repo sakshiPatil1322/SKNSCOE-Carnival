@@ -5,7 +5,6 @@ export const pendingGuides =  async (req, res) => {
         const pendingGuides = await User.find({ role: "guide", status: "pending" }).select("-password");
         res.json({ success: true, pendingGuides });
     } catch (error) {
-        console.error("Error fetching pending guides:", error);
         res.status(500).json({ success: false, message: "Server error" });
     }
 }
@@ -40,7 +39,6 @@ export const approveGuide = async (req, res) => {
         res.json({ success: true, message: "Guide approved successfully" });
 
     } catch (error) {
-        console.error("Error updating guide status:", error);
         res.status(500).json({ success: false, message: "Server error" });
     }
 }

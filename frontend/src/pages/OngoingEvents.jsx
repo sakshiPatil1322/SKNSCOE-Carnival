@@ -35,7 +35,7 @@ const OngoingEvents = () => {
                                 <p className="text-sm text-gray-600">Type: {event.type}</p>
                                 <p className="text-sm text-gray-600">Category: {event.category}</p>
                                 <p className="text-sm text-gray-600">
-                                    Guide: {event.guide?.name || "Not Assigned"}
+                                    Event Coordinator: {event.guide?.name || "Not Assigned"}
                                 </p>
                                 <p className="text-sm text-gray-600">
                                     Ends on: {new Date(event.endDate).toDateString()}

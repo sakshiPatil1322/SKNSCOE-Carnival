@@ -61,9 +61,9 @@ const ApproveGuides = () => {
         <Layout>
             <div className="p-6">
                 <div className="flex flex-col items-center h-screen">
-                    <h2 className="text-2xl font-bold m-up p-3">Approve Guides</h2>
+                    <h2 className="text-2xl font-bold m-up p-3">Approve Event Coordinator</h2>
                     {pendingGuides?.length === 0 ? (
-                        <p>No pending guide requests.</p>
+                        <p>No pending Event Coordinator requests.</p>
                     ) : (
                         <table className="w-[80%] border-collapse border border-gray-200 text-center">
                             <thead>
@@ -99,7 +99,7 @@ const ApproveGuides = () => {
                 {selectedGuide && (
                     <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
                         <div className="bg-white rounded shadow-lg p-5">
-                            <h3 className="text-lg font-semibold">Guide Details</h3>
+                            <h3 className="text-lg font-semibold">Event Coordinator Details</h3>
                             <p><strong>Name:</strong> {selectedGuide.name}</p>
                             <p><strong>Email:</strong> {selectedGuide.email}</p>
                             <p><strong>Status:</strong> {selectedGuide.status}</p>

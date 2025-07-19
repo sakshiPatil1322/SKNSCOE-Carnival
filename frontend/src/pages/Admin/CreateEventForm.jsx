@@ -77,7 +77,6 @@ const CreateEventForm = () => {
         e.preventDefault();
         try {
             const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/v1/events/create-event`, formData);
-            console.log('Event Created:', response.data);
             navigate("/");
         } catch (error) {
             console.error('Error:', error);

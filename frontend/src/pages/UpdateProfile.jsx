@@ -69,7 +69,7 @@ const UpdateProfile = () => {
                         <h2 className="text-2xl font-bold mb-4 text-blue-600">Your Profile</h2>
                         <p><strong>Name:</strong> {name}</p>
                         <p><strong>Email:</strong> {email}</p>
-                        <p><strong>Role:</strong> {role === "guide" ? "event coordinator" : role}</p>
+                        <p><strong>Role:</strong> {role === "guide" ? "Event Coordinator" : role}</p>
                         <p><strong>Status:</strong> {status}</p>
                     </div>
 
