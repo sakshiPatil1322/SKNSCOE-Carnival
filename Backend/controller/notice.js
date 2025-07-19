@@ -92,7 +92,6 @@ Event Management Team`,
       })
     );
 
-    console.log("✅ Notice emails sent to approved users and all participants.");
   } catch (error) {
     console.error("❌ Failed to send notice emails:", error.message);
   }

@@ -32,6 +32,7 @@ export const createEventController = async (req, res) => {
 
         res.status(201).json({ message: "Event created successfully", event: newEvent });
     } catch (error) {
+        console.error(error);
         res.status(500).json({ message: "Error creating event", error: error.message });
     }
 };
@@ -77,6 +78,7 @@ Event Management Team`
     try {
         await transporter.sendMail(mailOptions);
     } catch (error) {
+        console.error("Error sending email:", error);
     }
 };
 
@@ -86,6 +88,7 @@ export const getAllEventsController = async (req, res) => {
         const events = await Event.find().populate("guide", "name email");
         res.status(200).json(events);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ message: "Error fetching events", error: error.message });
     }
 };
@@ -103,6 +106,7 @@ export const deleteEventController = async (req, res) => {
 
         res.status(200).json({ message: "Event and related registrations deleted successfully" });
     } catch (error) {
+        console.error(error);
         res.status(500).json({ message: "Error deleting event", error: error.message });
     }
 };

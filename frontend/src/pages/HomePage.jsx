@@ -15,7 +15,7 @@ const Homepage = () => {
   const heroImages = [
     {
       url: "/images/clg1.JPG",
-      heading: "Skn Sinhgad College of Engineering Korti , Pandharpur",
+      heading: "SKN Sinhgad College of Engineering Korti , Pandharpur",
       description:
         'Accredited by NBA (UG Programmes - Civil , E&TC , Mech) & NAAC with "A+" Grade',
       buttonText: "Explore Events",
@@ -23,7 +23,7 @@ const Homepage = () => {
     },
     {
       url: "/images/clg2.JPG",
-      heading: "Skn Sinhgad College of Engineering Korti , Pandharpur",
+      heading: "SKN Sinhgad College of Engineering Korti , Pandharpur",
       description:
         'Accredited by NBA (UG Programmes - Civil , E&TC , Mech) & NAAC with "A+" Grade',
       buttonText: "Explore Events",
@@ -31,7 +31,7 @@ const Homepage = () => {
     },
     {
       url: "/images/clg3.JPG",
-      heading: "Skn Sinhgad College of Engineering Korti , Pandharpur",
+      heading: "SKN Sinhgad College of Engineering Korti , Pandharpur",
       description:
         'Accredited by NBA (UG Programmes - Civil , E&TC , Mech) & NAAC with "A+" Grade',
       buttonText: "Explore Events",
