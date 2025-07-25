@@ -76,6 +76,9 @@ const Header = ({ user }) => {
             <NavLink to="/upload-notice" className="nav-link">Upload-Notice</NavLink>
           </li>
           <li className="nav-item">
+            <NavLink to="/manage-notice" className="nav-link">Manage-Notices</NavLink>
+          </li>
+          <li className="nav-item">
             <NavLink to="/gallery" className="nav-link">Gallery</NavLink>
           </li>
           <li className="nav-item">

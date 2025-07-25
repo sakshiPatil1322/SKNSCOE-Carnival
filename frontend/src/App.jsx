@@ -16,6 +16,7 @@ import UploadNotice from './pages/UploadNotice';
 import NoticeList from './pages/Student/NoticeList';
 import Gallery from './pages/Admin/Gallery';
 import Contact from './pages/Contact'
+import ManageNotices from './pages/Admin/ManageNotices';
 const App = () => {
   return (
     <>
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/upload-notice" element={<UploadNotice />} />
         <Route path="/notice" element={<NoticeList />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/manage-notice" element={<ManageNotices />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </>
