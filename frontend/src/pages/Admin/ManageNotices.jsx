@@ -6,7 +6,7 @@ const ManageNotices = () => {
     const [notices, setNotices] = useState([]);
     const [loading, setLoading] = useState(true);
 
-   useEffect(() => {
+    useEffect(() => {
         const fetchNotices = async () => {
             const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/v1/notice/all`);
             setNotices(data);
@@ -32,12 +32,12 @@ const ManageNotices = () => {
 
     return (
         <Layout>
-            <div className="p-4">
-                <h2 className="text-xl font-bold mb-4">Manage Notices</h2>
+            <div className="p-5">
+                <h2 className="text-xl font-bold mb-4 mt-5 text-center">Manage Notices</h2>
                 {loading ? (
                     <p>Loading notices...</p>
                 ) : notices.length === 0 ? (
-                    <p>No notices available.</p>
+                    <p className=" text-center">No notices available.</p>
                 ) : (
                     <div className="overflow-x-auto">
                         <table className="w-full text-left border border-gray-300">
